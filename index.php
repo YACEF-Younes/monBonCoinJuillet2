@@ -1,6 +1,7 @@
 <?php
 
 use App\Db;
+use Models\Categories;
 use Models\Users;
 
 
@@ -41,5 +42,29 @@ require_once('autoloader.php');
 
     // Users::create($data);
     // Users::update($data);
+?>
+
+
+<h2>Test de la méthode findAll sur catégories</h2>
+<?php
+    $categories = Categories::findAll();
+    var_dump($categories);
+?>
+<h2>Test de la méthode findById sur catégories</h2>
+<?php
+    $categories = Categories::findById(2);
+    var_dump($categories);
+?>
+<h2>Test de la méthode create sur catégories</h2>
+<?php
+    // $categories = Categories::create("non classé");   
+?>
+<h2>Test de la méthode update sur catégories</h2>
+<?php
+    // $categories = Categories::update("non classée",1);   
+?>
+<h2>Test de la méthode delete sur catégories</h2>
+<?php
+    // $categories = Categories::delete(1);   
 ?>
 
