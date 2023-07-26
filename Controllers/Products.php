@@ -14,4 +14,34 @@ class Products extends Controller{
             'products' => $products
         ]);
     }
+
+    
+
+    // Méthode pour récupérer un produit par son id et l'envoyer à la vue detailProduct
+    public static function detailProduct(){
+        // Je crée une variable pour stocker les erreurs potentielles
+        $err = "";
+        if(isset($_GET['id'])){
+        $idProduct = $_GET['id'];
+        // echo $idProduct;
+        $product = \Models\Products::findById($idProduct);
+        $err = !$product ? "le produit demandé n'existe pas" : null;
+        // echo $err;
+        // Après avoir récupérer le produit je récupère le user propriétaire du produit
+        // pour pouvoir utiliser son adresse 
+        $idUser = $product['idUser'];
+        $userProduct = \Models\Users::findById($idUser);
+
+        //j'utilise le render
+        self::render('products/detailProduct', [
+            'title' => "détail du produit",
+            'product' => $product,
+            'user' => $userProduct,
+            'erreur' => $err
+        ]);
+        }
+        // else {
+        //     echo "le produit demandé n'existe pas";
+        // }
+    }
 }
