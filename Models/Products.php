@@ -17,7 +17,7 @@ class Products extends Db{
         //     $request .= " ORDER BY price $order";
         // }
         // même chose en ternaire
-        $order ? $request .= " ORDER BY price $order" : null;
+        $order ? $request .= " ORDER BY $order" : null;
         $limit ? $request .= " LIMIT $limit" : null;
         $response = self::getDb()->prepare($request);
         $response->execute();
@@ -49,7 +49,7 @@ class Products extends Db{
     public static function findByCat($idCategory, $order = null){
         $request = "SELECT *, products.title AS productsTitle, categories.title AS catTitle FROM products INNER JOIN categories ON products.idCategory = categories.idCategory WHERE products.idCategory = :idCategory";
         // Attention le champs idCategory est présent dans les deux tables donc il faut préciser le nom de la table dans le WHERE
-        $order ? $request.= " ORDER BY price $order" : null;
+        $order ? $request.= " ORDER BY $order" : null;
         $response = self::getDb()->prepare($request);
         $response->bindValue(':idCategory', $idCategory, PDO::PARAM_INT);
         $response->execute();

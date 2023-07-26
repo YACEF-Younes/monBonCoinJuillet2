@@ -15,6 +15,8 @@ require_once('../autoloader.php');
 
 // On crée un routeur pour gérer les routes
 // On appelle la méthode app()
+define('ROOT', dirname(__DIR__));
+// echo ROOT;
 
 $routeur = new Routeur;
 $routeur->app();
