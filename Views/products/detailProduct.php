@@ -17,14 +17,21 @@
                     <iframe src="https://www.google.com/maps?q=<?= $user['city'] ?>&t=&z=13&ie=UTF8&iwloc=&output=embed" width='100%' height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="p-2"></iframe>
                 </div>
             </div>
-            <p>Description :</p>
-            <p><?= $product['description'] ?></p>
-            <p>Prix :</p>
-            <p><?= $product['price'] ?> €</p>
+            <div class="row">
+                <div class="col-12 col-md-6 bg-info">
+                    <p><u>Description :</u></p>
+                    <p><?= $product['description'] ?></p>
+                </div>
+                <div class="col-12 col-md-6 bg-info">
+                    <p><u>Prix :</u></p>
+                    <p><?= $product['price'] ?> €</p>
+                </div>
+            </div>
+
+
         </div>
-        <div class="card-footer text-center">
+        <div class="card-footer text-center bg-primary">
             <a href="/panier" class="btn btn-secondary">Ajouter au panier</a>
         </div>
     </div>
 <?php endif ?>
-
