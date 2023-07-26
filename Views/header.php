@@ -20,7 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link active" href="/">Tous les produits</a>
+                            <a class="nav-link active" href="/products">Tous les produits</a>
                         </li>
                     </ul>
                     <form class="d-flex">
