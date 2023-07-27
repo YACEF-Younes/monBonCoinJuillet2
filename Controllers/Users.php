@@ -3,7 +3,6 @@ namespace Controllers;
 
 class Users extends Controller{
     public static function connexion(){
-<<<<<<< HEAD
         $errMsg = "";
         // Pour vérifier si le formulaire a été soumis nous pouvons utiliser la super globale $_SERVER (cette méthode ne fonctionne qu'avec un formulaire en POST)
         // var_dump($_SERVER);
@@ -47,11 +46,15 @@ class Users extends Controller{
         $_SESSION['message'] = "A bientôt";
         header('Location: /');
     }
-=======
+
+    public static function inscription(){
+        $errMsg = "";
+        // Regex du mot de passe (minimum 8 caractères)
+        $pattern = '/^.{8}$/';
 
         self::render('users/connexion',[
-            'title' => 'Vous pouvez vous connecter'
+            'title' => 'Merci de remplir le formulaire pour vous inscrire',
+            'erreurMessage' => $errMsg
         ]);
-    }
->>>>>>> 805954216430445a6a57de8e1b69b75291fd0d46
+    }        
 }
