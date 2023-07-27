@@ -67,6 +67,13 @@ class Products extends Controller{
             'categories' => $categories
         ]);
     }
+
+    // Méthode pour ajouter un produit 
+    public static function ajoutProduct(){
+        self::render('products/formProduct',[
+            'title' => 'Formulaire de création d\'un produit'
+        ]);
+    }
 }
 
 

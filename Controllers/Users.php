@@ -81,6 +81,7 @@ class Users extends Controller{
             if($_POST['password'] == $_POST['confirm'] && preg_match($pattern, $_POST['password'])) {
                 // Je sécurise les saisies
                 self::security();
+                $_POST['password'] = password_hash($_POST['password'], PASSWORD_DEFAULT );
                 // Pour vérifier la securisation
                 // var_dump($_POST);
                 // Je crée un tableau qui contient les infos du user
@@ -91,8 +92,13 @@ class Users extends Controller{
                     }
                 }
                 // var_dump($dataUser);
+
+                // On enregistre en BDD
+                \Models\Users::create($dataUser);
+                $_SESSION['message']= "Votre compte est créé, vous pouvez vous connecter";
+                header('Location: /connexion');
             }else{
-                $errMsg = 'Les deux mot de passe sont diffférents';
+                $errMsg = 'Les deux mot de passe sont différents ou ne contiennent pas 8 caractères';
             }
 
         }
@@ -102,5 +108,12 @@ class Users extends Controller{
             'erreurMessage' => $errMsg
             
         ]);
-    }        
+    }       
+    
+    public static function profil(){
+
+        self::render('users/profil', [
+            'title' => 'Votre profil utilisateur'
+        ]);
+    }
 }

@@ -12,7 +12,7 @@ class Products extends Db{
     public static function findAll($order = null, $limit = null){
         // Pour récupérer le nom des categories on doit faire une jointure
         $request = "SELECT *, products.title AS productTitle, categories.title AS catTitle FROM products INNER JOIN categories ON products.idCategory = categories.idCategory";
-        // On voudrai pouvoir ordonner les réponse par prix
+        // On voudrai pouvoir ordonner les réponses par prix
         // if ($order) {
         //     $request .= " ORDER BY price $order";
         // }
