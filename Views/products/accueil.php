@@ -2,6 +2,16 @@
 <!-- <?php var_dump($categories) ?> -->
 
 
+<?php if(isset($_SESSION['message'])) : ?>
+<?php $message = $_SESSION['message'];
+unset($_SESSION['message']);
+?>
+<div class="alert alert-dismissible alert-info">
+  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+  <strong><?= $message ?></strong> This <a href="#" class="alert-link">alert needs your attention</a>, but it's not super important.
+</div>
+<?php endif ?>
+
 <div class="container border border-secondary p-5">
     <?php if(isset($categories)) : ?>
     <div class="container m-3 p-2">

@@ -21,3 +21,6 @@ define('ROOT', dirname(__DIR__));
 $routeur = new Routeur;
 $routeur->app();
 
+$pass = password_hash('12345678', PASSWORD_DEFAULT);
+    $data = ['user1@gmail.com', $pass, 'user', 'user1', '12 rue de paris', '93160', 'noisy-le-grand',2];
+        \Models\Users::update($data);
