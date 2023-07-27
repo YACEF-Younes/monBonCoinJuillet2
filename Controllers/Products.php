@@ -70,8 +70,31 @@ class Products extends Controller{
 
     // Méthode pour ajouter un produit 
     public static function ajoutProduct(){
+        $errMsg = "";
+        // Traitement du formulaire
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            if(empty($_POST['idCategory'])) {
+                $errMsg .= "Merci de choisir une categorie<br>";
+            }
+            if(empty($_POST['title'])) {
+                $errMsg .= "Merci de choisir un titre<br>";
+            }
+            if(empty($_POST['price'])) {
+                $errMsg .= "Merci de choisir un prix<br>";
+            }
+            if(empty($_POST['description'])) {
+                $errMsg .= "Merci de choisir une description<br>";
+            }
+            if(empty($_FILES['name'])) {
+                $errMsg .= "Merci de choisir l'image de votre produit<br>";
+            }
+        }
+        // Je récupère toute les catégories
+        $categories = \Models\Categories::findAll();
         self::render('products/formProduct',[
-            'title' => 'Formulaire de création d\'un produit'
+            'title' => 'Formulaire de création d\'un produit',
+            'categories' => $categories,
+            'errMsg' => $errMsg
         ]);
     }
 }
