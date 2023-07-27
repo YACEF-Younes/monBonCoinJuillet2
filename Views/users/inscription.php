@@ -10,7 +10,7 @@
         <div class="row justify-content-around my-2">
             <div class="col-12 col-md-4">
                 <label for="login">Email</label>
-                <input type="text" name="login" id="email" placeholder="Votre email" class="form-control">
+                <input type="email" name="login" id="email" placeholder="Votre email" class="form-control">
             </div>
             <div class="col-12 col-md-3">
                 <label for="firstName">Prénom</label>

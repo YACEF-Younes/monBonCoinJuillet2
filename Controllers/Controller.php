@@ -24,7 +24,7 @@ class Controller
     // Méthode de sécurisation des champs de formulaire
     public static function security()
     {
-        if ($_SERVER['METHOD_POST'] == 'POST') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             foreach ($_POST as $key => $value) {
                 $_POST[$key] = htmlspecialchars(trim($value));
             }

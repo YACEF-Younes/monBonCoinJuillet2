@@ -53,8 +53,8 @@ class Users extends Controller{
         $pattern = '/^.{8}$/';
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             // On verifie que tt les champs soit remplit
-            if(empty($_POST['login'])) {
-                $errMsg .= "Merci de saisir votre email<br>";
+            if(empty($_POST['login']) || !filter_var($_POST['login'], FILTER_VALIDATE_EMAIL)) {
+                $errMsg .= "Merci de saisir votre email valide<br>";
             }
             if(empty($_POST['firstName'])) {
                 $errMsg .= "Merci de saisir votre firstName<br>";
@@ -77,9 +77,20 @@ class Users extends Controller{
             if(empty($_POST['confirm'])) {
                 $errMsg .= "Merci de saisir votre confirm<br>";
             }
-            // on vérifie que les deux password correspondent
-            if($_POST['password'] == $_POST['confirm']) {
-
+            // on vérifie que les deux password correspondent et min 8 caractères
+            if($_POST['password'] == $_POST['confirm'] && preg_match($pattern, $_POST['password'])) {
+                // Je sécurise les saisies
+                self::security();
+                // Pour vérifier la securisation
+                // var_dump($_POST);
+                // Je crée un tableau qui contient les infos du user
+                $dataUser = [];
+                foreach ($_POST as $key => $value) {
+                    if ($key != 'confirm') {
+                        $dataUser[] = $value;
+                    }
+                }
+                // var_dump($dataUser);
             }else{
                 $errMsg = 'Les deux mot de passe sont diffférents';
             }
@@ -89,6 +100,7 @@ class Users extends Controller{
         self::render('users/inscription',[
             'title' => 'Merci de remplir le formulaire pour vous inscrire',
             'erreurMessage' => $errMsg
+            
         ]);
     }        
 }
