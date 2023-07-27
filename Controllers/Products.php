@@ -52,6 +52,8 @@ class Products extends Controller{
         }else{
             $products = \Models\Products::findAll();
         }
+
+
         // J'utilise render() pour envoyer ces produist à la bonne vue
         self::render('products/accueil', [
             'title' => 'Tous les produits de Mon Bon Coin',
