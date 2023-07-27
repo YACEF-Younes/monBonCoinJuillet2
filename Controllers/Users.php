@@ -51,8 +51,42 @@ class Users extends Controller{
         $errMsg = "";
         // Regex du mot de passe (minimum 8 caractères)
         $pattern = '/^.{8}$/';
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            // On verifie que tt les champs soit remplit
+            if(empty($_POST['login'])) {
+                $errMsg .= "Merci de saisir votre email<br>";
+            }
+            if(empty($_POST['firstName'])) {
+                $errMsg .= "Merci de saisir votre firstName<br>";
+            }
+            if(empty($_POST['lastName'])) {
+                $errMsg .= "Merci de saisir votre lastName<br>";
+            }
+            if(empty($_POST['address'])) {
+                $errMsg .= "Merci de saisir votre address<br>";
+            }
+            if(empty($_POST['cp'])) {
+                $errMsg .= "Merci de saisir votre cp<br>";
+            }
+            if(empty($_POST['city'])) {
+                $errMsg .= "Merci de saisir votre city<br>";
+            }
+            if(empty($_POST['password'])) {
+                $errMsg .= "Merci de saisir votre password<br>";
+            }
+            if(empty($_POST['confirm'])) {
+                $errMsg .= "Merci de saisir votre confirm<br>";
+            }
+            // on vérifie que les deux password correspondent
+            if($_POST['password'] == $_POST['confirm']) {
 
-        self::render('users/connexion',[
+            }else{
+                $errMsg = 'Les deux mot de passe sont diffférents';
+            }
+
+        }
+
+        self::render('users/inscription',[
             'title' => 'Merci de remplir le formulaire pour vous inscrire',
             'erreurMessage' => $errMsg
         ]);
