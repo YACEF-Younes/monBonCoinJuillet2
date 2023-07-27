@@ -3,6 +3,7 @@ namespace Controllers;
 
 class Users extends Controller{
     public static function connexion(){
+<<<<<<< HEAD
         $errMsg = "";
         // Pour vérifier si le formulaire a été soumis nous pouvons utiliser la super globale $_SERVER (cette méthode ne fonctionne qu'avec un formulaire en POST)
         // var_dump($_SERVER);
@@ -46,4 +47,11 @@ class Users extends Controller{
         $_SESSION['message'] = "A bientôt";
         header('Location: /');
     }
+=======
+
+        self::render('users/connexion',[
+            'title' => 'Vous pouvez vous connecter'
+        ]);
+    }
+>>>>>>> 805954216430445a6a57de8e1b69b75291fd0d46
 }

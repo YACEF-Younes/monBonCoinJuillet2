@@ -20,6 +20,7 @@
                 <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
+<<<<<<< HEAD
                             <a class="nav-link" href="/products">Tous les produits</a>
                         </li>
                     </ul>
@@ -33,17 +34,29 @@
                         </li>
                     </ul>
                         <?php else : ?>
+=======
+                            <a class="nav-link active" href="/products">Tous les produits</a>
+                        </li>
+                    </ul>
+>>>>>>> 805954216430445a6a57de8e1b69b75291fd0d46
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item mx-5">
                             <a class="btn btn-info" href="/connexion">Connexion</a>
                         </li>
                     </ul>
+<<<<<<< HEAD
                     <?php endif ?>
+=======
+>>>>>>> 805954216430445a6a57de8e1b69b75291fd0d46
                     <form class="d-flex">
                         <input class="form-control me-sm-2" type="search" placeholder="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                 </div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 805954216430445a6a57de8e1b69b75291fd0d46
             </div>
         </nav>
     </header>
