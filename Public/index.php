@@ -1,6 +1,10 @@
 <?php
 
 use App\Routeur;
+
+// Pour gérer les connexion on utlise la session
+session_start();
+// J'ai maintenant accés à $_SESSION dans toute mon app
 // ce fichier est le point d'entrée de notre site
 
 // echo "point d'entrée";
