@@ -193,7 +193,10 @@ class Products extends Controller
                         $product['idProduct']
                     ];
                     // On utilise la bonne méthode
+                    unlink("../public/image/" . $product['image']);
+
                     \Models\Products::update($dataProductUpdate);
+
                     header('Location: /profil');
                 } else {
                     $errMsg = "Votre image n'est pas au format demandé";
