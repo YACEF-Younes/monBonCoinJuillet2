@@ -133,11 +133,39 @@ class Products extends Controller{
         
         // Je récupère toute les catégories
         $categories = \Models\Categories::findAll();
+        // j'appelle la bonne vue
         self::render('products/formProduct',[
             'title' => 'Formulaire de création d\'un produit',
             'categories' => $categories,
             'errMsg' => $errMsg
         ]);
+    }
+
+    // Méthode pour modifier un produit
+    public static function modifProduct(){
+        $errMsg = "";
+        // Je récupère toute les catégories
+        $categories = \Models\Categories::findAll();
+
+        // Je ais appelle a models Products pour récupérer le produit à modifier
+        $idProduct = $_GET['id'];
+        $product = \Models\Products::findById($idProduct);
+
+        // j'appelle la bonne vue
+        if(isset($_SESSION['user']) && $_SESSION['user']['role'] == 1 ||
+        $_SESSION['user']['id'] == $product['idUser']){
+        self::render('products/formProduct',[
+            'title' => 'Formulaire de modification d\'un produit',
+            'categories' => $categories,
+            'errMsg' => $errMsg,
+            'product' => $product
+        ]);
+    }else{
+        self::render('users/connexion',[
+            'title' => 'Meci de vous connecter pour modifier',
+            'messageErreur' => $errMsg
+        ]);
+    }
     }
 }
 
