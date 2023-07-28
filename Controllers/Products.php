@@ -88,7 +88,49 @@ class Products extends Controller{
             if(empty($_FILES['name'])) {
                 $errMsg .= "Merci de choisir l'image de votre produit<br>";
             }
+            // Les controles sur l'image
+            if ($_FILES['image']['size'] < 3000000 && 
+            ($_FILES['image']['type'] == 'image/jpeg' ||
+            $_FILES['image']['type'] == 'image/jpg' ||
+            $_FILES['image']['type'] == 'image/png' ||
+            $_FILES['image']['type'] == 'image/webp')) {
+                // On sécurise les saisies
+                self::security();
+                // On renommer l'image pour avoir un nom unique
+                $photoName = uniqid() . $_FILES['image']['name'];
+                echo $photoName;
+                echo __DIR__;
+                // on copie l'image sur le serveur
+                copy($_FILES['image']['tmp_name'], "../public/image/" . $photoName);
+                //  On peut maintenant enregistrer en BDD
+
+            }else{
+                $errMsg = "Votre image n'est pas au format demandé";
+            }
+
+            // Je crée un tableau qui contient les infos du produit
+            $dataProduct = [
+                $_POST['idCategorie'],
+                $_SESSION['user']['id'],
+                $_POST['title'],
+                $_POST['description'],
+                $_POST['price'], 
+                $photoName
+            ];
+
+
+
+            // var_dump($dataUser);
+
+            // On enregistre en BDD
+            \Models\Products::create($dataProduct);
+            $_SESSION['message']= "Votre compte est créé, vous pouvez vous connecter";
+            header('Location: /');
+        }else{
+            $errMsg = 'Les deux mot de passe sont différents ou ne contiennent pas 8 caractères';
         }
+
+        
         // Je récupère toute les catégories
         $categories = \Models\Categories::findAll();
         self::render('products/formProduct',[
